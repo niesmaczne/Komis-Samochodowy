@@ -1,3 +1,3 @@
 # Komis-Samochodowy
 
-Projekt zaliczeniowy programowanie obiektowe
+Projekt zaliczeniowy z przedmiotu Programowanie Obiektowe
