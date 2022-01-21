@@ -1,4 +1,5 @@
 ﻿using System;
+using Vehicles;
 
 namespace BorskaBiskup_KomisSamochodowy
 {
@@ -6,7 +7,8 @@ namespace BorskaBiskup_KomisSamochodowy
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Car car1 = new Car();
+            Console.WriteLine(car1.Discount(5));
         }
     }
 }
