@@ -7,8 +7,9 @@ namespace BorskaBiskup_KomisSamochodowy
     {
         static void Main(string[] args)
         {
-            Car car1 = new Car();
-            Console.WriteLine(car1.Discount(5));
+            var ks = new KomisSamochodowy();
+
+            ks.MainMenu();
         }
     }
 }

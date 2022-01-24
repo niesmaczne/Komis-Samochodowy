@@ -3,6 +3,6 @@ namespace Vehicles
 {
     public interface IDiscounter
     {
-        public float Discount(int percentage);
+        public decimal Discount(int percentage);
     }
 }
