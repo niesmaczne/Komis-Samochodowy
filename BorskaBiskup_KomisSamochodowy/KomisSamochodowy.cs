@@ -8,6 +8,7 @@ namespace BorskaBiskup_KomisSamochodowy
     {
         private List<Vehicle> vehicles = new List<Vehicle>();
 
+        //tworze 3 losowe samochody; tworzenie instancji klasy dziedziczacej po engine (ICE i ElectricMotor) jest wykonywane bezposrednio do konstruktora klasy dziedziczacej po vehicle (Car i MotorCycle)
         public KomisSamochodowy()
         {
             vehicles.Add(new Car("VolksWagen", "Golf", 1994,
@@ -29,6 +30,7 @@ namespace BorskaBiskup_KomisSamochodowy
             string s_input;
             int i_input;
 
+        //nieskończona pętla, która wykonuje się a dostanie słowo break/return
             while (true)
             {
                 Console.Write("Witaj w komisie!\n\n" +
@@ -37,6 +39,7 @@ namespace BorskaBiskup_KomisSamochodowy
                     "2. Dodaj pojazd\n" +
                     "0. Wyjdź z programu\n");
 
+                //Próba przekonwertowania stringa do inta, jezeli nie uda się, wyłapie błąd i wróci do początku pętli
                 s_input = Console.ReadLine();
                 try
                 {
@@ -48,12 +51,14 @@ namespace BorskaBiskup_KomisSamochodowy
                     continue;
                 }
 
+                // wywoluje odpowiednie funkcje zaleznie od wybranego numeru; jezeli nie rozpozna numeru to wroci do poczatku pętli
                 switch (i_input)
                 {
                     case 0:
                         Console.WriteLine("Żegnaj!");
                         return;
 
+                // break przerywa polecenie switch, domyślnie (bez uzycia break) wykonywalyby sie wszystkie kolejne case
                     case 1:
                         printVehicles();
                         break;
@@ -113,8 +118,10 @@ namespace BorskaBiskup_KomisSamochodowy
 
         }
 
+        // zwróci samochód
         private Car readCar()
         {
+            // brand i name są stringami, więc nie muszą być konwerowane, natomiast year i price nalezy skonwertować
             string s_input;
             string brand;
             string name;
@@ -311,6 +318,8 @@ namespace BorskaBiskup_KomisSamochodowy
                     "{4}. {5}\n" +
                     "{6}. {7}\n" +
                     "{8}. {9}\n",
+                    //ToString ma przeładowanie w którym podajemy jaki format enuma chcemy uzyskac, domyślnie jest to string, ale moemy mieć te jego wartość int
+                    //format d spowoduje, ze enum zostanie wyświetlony jako liczba 
                     /*0*/ FuelType.Diesel.ToString("d"), FuelType.Diesel,
                     /*2*/ FuelType.Gasoline.ToString("d"), FuelType.Gasoline,
                     /*4*/ FuelType.Hydrogen.ToString("d"), FuelType.Hydrogen,
@@ -445,15 +454,18 @@ namespace BorskaBiskup_KomisSamochodowy
         private void printVehicles()
         {
             bool empty = true;
+            // utworzona została druga lista przechowujaca pojazdy przeznaczone do usunięcia, aby nie modyfikować listy po której się przemieszczamy. Usunięcie z listy po której się przemieszczamy spowodowałoby wyjątek.
             List<Vehicle> markedForDeletion = new List<Vehicle>();
 
             foreach (Vehicle v in vehicles)
             {
+                // empty = false, ponieważ w liście samochodów jest przynajmniej jeden obiekt
                 empty = false;
                 Console.WriteLine(v);
                 string s_input;
                 int i_input;
 
+                //jeżeli nie jest done pętla ma być kontynuowana
                 bool done = false;
                 while (!done)
                 {
@@ -480,6 +492,7 @@ namespace BorskaBiskup_KomisSamochodowy
                             return;
 
                         case 1:
+                        // oznaczenie warunku pętli na true spowoduje że pętla nie wykona się przy kolejnej iteracji 
                             done = true;
                             break;
 
@@ -489,6 +502,7 @@ namespace BorskaBiskup_KomisSamochodowy
                             break;
 
                         case 3:
+                            // w tym miejscu nie usuwam a dodaje do listy wyżej
                             markedForDeletion.Add(v);
                             done = true;
                             break;
@@ -500,11 +514,13 @@ namespace BorskaBiskup_KomisSamochodowy
                 }
             }
 
+            // w tym momencie wyświetam że lista samochodów jest pusta
             if (empty)
             {
                 Console.WriteLine("Lista samochodów jest pusta!");
             }
-
+            
+            //usuwam pojazdy z listy, które zostały oznaczone wcześniej
             foreach (Vehicle marked in markedForDeletion)
             {
                 removeVehicle(marked);

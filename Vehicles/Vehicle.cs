@@ -4,6 +4,7 @@ namespace Vehicles
 {
     public abstract class Vehicle: IDiscounter
     {
+        //prywatne pola aby mogła poprawnie zajść hermetyzacja
         private string brand;
         private string name;
         private int year;
@@ -12,6 +13,7 @@ namespace Vehicles
 
         public Engine Engine;
 
+        //daje dostęp do prywatnego price, zarówno do zapisu jak i odczytu
         public decimal Price
         {
             get { return this.price; }
@@ -41,7 +43,7 @@ namespace Vehicles
             get { return this.year; }
             set { this.year = value; }
         }
-
+        //pozwala uzyc vehicle jako discountera; jezeli chciałabym stworzyć instancje, to wyrzuci wyjatek
         public decimal Discount(int percentage) { throw new NotImplementedException(); }
     }
 }

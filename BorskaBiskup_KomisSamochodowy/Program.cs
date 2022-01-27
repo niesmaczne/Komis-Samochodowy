@@ -7,6 +7,7 @@ namespace BorskaBiskup_KomisSamochodowy
     {
         static void Main(string[] args)
         {
+            //KomisSamochodowy ks = new KomisSamochodowy();
             var ks = new KomisSamochodowy();
 
             ks.MainMenu();
