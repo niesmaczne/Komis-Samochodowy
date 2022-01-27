@@ -32,7 +32,9 @@ namespace Vehicles
             this.Power = power;
             this.Fuel = fuel;
         }
-
+        
+        // funkcja tosring nadpisuje domyslna funkcje tostring aby ladnie przetransformowac klase na string (inaczej zwrocilby domyslna wartosc)
+        // dziedziczenie po klasie w ktorej jest juz zdefiniowana dana funkcja wymusza uzycide slowa override zeby nadpisac dana funkcje 
         override public string ToString()
         {
             return String.Format("Internal Combustion Engine:\n" +
